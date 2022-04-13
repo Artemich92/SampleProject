@@ -100,3 +100,29 @@ dependencies {
     //Logger
     implementation 'com.jakewharton.timber:timber:5.0.1'
 }
+
+codeQuality {
+    reportsDirectory = file('build/reports')
+    issuesFile = rootProject.file('gl-code-quality-report.json')
+    collectInformationIssues = true
+}
+
+task installPreCommitHook() {
+    doFirst {
+        def file = new File(rootProject.rootDir, "pre-commit")
+        def downloadUrl = "https://ci.getmobileup.com/ci/android/githooks/windows/pre-commit.sh"
+        new URL(downloadUrl).withInputStream { i ->
+            file.withOutputStream { it << i }
+        }
+    }
+    doLast {
+        copy {
+            from new File(rootProject.rootDir, "pre-commit")
+            into { new File(rootProject.rootDir, ".git/hooks") }
+            fileMode 0777
+        }
+        delete {
+            delete "${rootProject.rootDir.path}/pre-commit"
+        }
+    }
+}
