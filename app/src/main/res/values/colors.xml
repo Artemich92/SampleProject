@@ -7,4 +7,15 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+
+    <!--Main Colors-->
+    <!--Общие цвета всего приложения указываем в этом месте-->
+    <color name="red">#FF4143</color>
+    <color name="green">#AFD838</color>
+    <color name="very_light_blue">#EFF7FF</color>
+    <color name="pink">#FF97A2</color>
+    <color name="background_toolbar">#F1F7FF</color>
+    <color name="shadow_half_transparent">#80DAE2E8</color>
+    <color name="main_black">#333F49</color>
+
 </resources>

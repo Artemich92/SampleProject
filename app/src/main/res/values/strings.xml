@@ -1,3 +1,21 @@
 <resources>
     <string name="app_name">SampleProject</string>
+
+    <!--Generals-->
+    <string name="no_internet_connection">Отсутствует подключение к интернету</string>
+    <string name="internet_connection_restored">Подключение к интернету восстановлено</string>
+    <string name="ok">ОK</string>
+
+    <!-- CountryCode -->
+    <string name="country_code_name_country_hint">Введите название страны</string>
+    <string name="country_russia">Россия</string>
+    <string name="country_ukraine">Украина</string>
+    <string name="country_belarus">Беларусь</string>
+    <string name="country_kazakhstan">Казахстан</string>
+    <string name="country_usa">США</string>
+
+    <!-- Titles in App -->
+    <string name="title_home">Главная</string>
+    <string name="title_search">Поиск</string>
+    <string name="title_profile">Профиль</string>
 </resources>

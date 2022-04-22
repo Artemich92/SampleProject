@@ -13,4 +13,14 @@
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
     </style>
+
+    <style name="DatePickerDialog" parent="Theme.AppCompat.Light.Dialog">
+        <item name="colorAccent">@color/green</item>
+        <item name="android:buttonBarNegativeButtonStyle">@style/DatePickerDialog.ButtonStyle</item>
+        <item name="android:buttonBarPositiveButtonStyle">@style/DatePickerDialog.ButtonStyle</item>
+    </style>
+
+    <style name="DatePickerDialog.ButtonStyle" parent="Widget.MaterialComponents.Button.TextButton.Dialog">
+        <item name="android:textColor">@color/green</item>
+    </style>
 </resources>
