@@ -1,8 +1,6 @@
-package com.realcosmetology.android.utils.api.core
+package com.sampleproject.utils.api.core
 
-import com.sampleproject.utils.api.core.Answer
 import com.sampleproject.utils.api.core.Answer.Failure
-import com.sampleproject.utils.api.core.fold
 
 inline fun <R, T> Answer<T>.mapResult(transform: (value: T) -> Answer<R>): Answer<R> {
     return fold(

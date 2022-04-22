@@ -4,7 +4,6 @@ import android.view.View
 import androidx.annotation.LayoutRes
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
-import com.realcosmetology.android.utils.adapter.ItemVM
 import kotlinx.coroutines.channels.Channel
 import timber.log.Timber
 

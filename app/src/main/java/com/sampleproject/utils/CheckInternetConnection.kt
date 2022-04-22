@@ -13,9 +13,9 @@ import androidx.interpolator.view.animation.FastOutSlowInInterpolator
 import com.sampleproject.utils.provider.ConnectivityStatusProvider.ConnectivityStatus
 import com.sampleproject.utils.provider.ConnectivityStatusProvider.ConnectivityStatus.CONNECTED
 import com.sampleproject.utils.provider.ConnectivityStatusProvider.ConnectivityStatus.DISCONNECTED
-import com.realcosmetology.android.utils.ui.doOnClick
 import com.sampleproject.R
 import com.sampleproject.databinding.InternetConnectionStatusBinding
+import com.sampleproject.utils.ui.doOnClick
 
 class CheckInternetConnection(private val binding: InternetConnectionStatusBinding) {
 

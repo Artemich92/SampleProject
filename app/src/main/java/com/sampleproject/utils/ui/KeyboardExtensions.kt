@@ -1,4 +1,4 @@
-package com.realcosmetology.android.utils.ui
+package com.sampleproject.utils.ui
 
 import android.content.Context
 import android.view.View

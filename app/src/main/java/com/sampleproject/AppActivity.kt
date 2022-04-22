@@ -17,9 +17,6 @@ import androidx.core.view.isInvisible
 import androidx.core.view.isVisible
 import androidx.navigation.NavController
 import androidx.navigation.ui.setupWithNavController
-import com.google.firebase.analytics.FirebaseAnalytics
-import com.google.firebase.analytics.ktx.analytics
-import com.google.firebase.ktx.Firebase
 import com.sampleproject.databinding.ActivityMainBinding
 import com.sampleproject.utils.CheckInternetConnection
 import com.sampleproject.utils.navigation.DIALOGS
@@ -37,14 +34,11 @@ class AppActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
 
-    private lateinit var firebaseAnalytics: FirebaseAnalytics
-
     private lateinit var internetConnection: CheckInternetConnection
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
-        firebaseAnalytics = Firebase.analytics
         internetConnection = CheckInternetConnection(binding.internetConnectionStatus)
         setContentView(binding.root)
         activateSecurityMod()
@@ -95,7 +89,7 @@ class AppActivity : AppCompatActivity() {
             bottomBar.isVisible = visibility
             addProcedureFab.isVisible = visibility
         }
-        //Необходимо для отключения tooltips(текстовых сообщений) при longClick (Alexander Yanchelenko / 29.12.2021)
+        //Необходимо для отключения tooltips(текстовых сообщений) при longClick
         binding.bottomNavigationView.menu.forEach {
             TooltipCompat.setTooltipText(findViewById(it.itemId), null)
         }
@@ -126,9 +120,9 @@ class AppActivity : AppCompatActivity() {
         return super.dispatchTouchEvent(event)
     }
 
-    fun syncSetting(isIntegratedCalendar: Boolean, isReceivingNews: Boolean, isReceivingNotifications: Boolean) {
+    /*fun syncSetting(isIntegratedCalendar: Boolean, isReceivingNews: Boolean, isReceivingNotifications: Boolean) {
         viewModel.sendSettingsParameters(isIntegratedCalendar)
-    }
+    }*/
 
     fun showOrHideBottomBar(isVisible: Boolean) {
         with(binding) {

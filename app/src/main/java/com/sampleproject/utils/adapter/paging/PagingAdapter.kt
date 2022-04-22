@@ -5,7 +5,6 @@ import android.view.ViewGroup
 import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
-import com.sampleproject.R
 import com.sampleproject.utils.adapter.ItemVM
 import com.sampleproject.utils.adapter.ViewHolder
 import kotlinx.coroutines.channels.Channel
@@ -33,11 +32,7 @@ open class PagingAdapter : PagingDataAdapter<ItemVM, ViewHolder>(DiffCallback) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
-        return if (viewType == 0) {
-            ViewHolder(layoutInflater.inflate(R.layout.item_procedure_records_title, parent, false))
-        } else {
-            ViewHolder(layoutInflater.inflate(viewType, parent, false))
-        }
+           return ViewHolder(layoutInflater.inflate(viewType, parent, false))
     }
 
     override fun onViewAttachedToWindow(holder: ViewHolder) {

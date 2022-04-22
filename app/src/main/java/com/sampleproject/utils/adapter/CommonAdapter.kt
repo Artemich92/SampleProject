@@ -4,8 +4,6 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
-import com.realcosmetology.android.utils.adapter.ItemVM
-import com.realcosmetology.android.utils.adapter.ViewHolder
 import kotlinx.coroutines.channels.Channel
 
 open class CommonAdapter : ListAdapter<ItemVM, ViewHolder>(DiffCallback) {

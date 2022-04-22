@@ -1,4 +1,4 @@
-package com.realcosmetology.android.utils.base.toolbar
+package com.sampleproject.utils.base.toolbar
 
 import android.graphics.drawable.Drawable
 import android.view.View
@@ -7,9 +7,9 @@ import androidx.appcompat.content.res.AppCompatResources
 import androidx.core.content.ContextCompat
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
-import com.realcosmetology.android.utils.base.toolbar.ToolbarIconType.ICON_ALERT_NON
-import com.realcosmetology.android.utils.base.toolbar.ToolbarIconType.ICON_ALERT_YES
-import com.realcosmetology.android.utils.base.toolbar.ToolbarIconType.ICON_BACK
+import com.sampleproject.utils.base.toolbar.ToolbarIconType.ICON_ALERT_NON
+import com.sampleproject.utils.base.toolbar.ToolbarIconType.ICON_ALERT_YES
+import com.sampleproject.utils.base.toolbar.ToolbarIconType.ICON_BACK
 import com.sampleproject.databinding.ToolbarBinding
 import com.sampleproject.utils.navigation.safePopBackStack
 import com.sampleproject.utils.ui.doOnClick
