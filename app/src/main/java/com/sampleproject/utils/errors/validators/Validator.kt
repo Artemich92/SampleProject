@@ -1,12 +1,11 @@
-package com.realcosmetology.android.utils.errors.validators
+package com.sampleproject.utils.errors.validators
 
 import androidx.lifecycle.MutableLiveData
-import com.realcosmetology.android.utils.ErrorWrapper
+import com.sampleproject.utils.ErrorWrapper
 import com.sampleproject.utils.errors.conditions.ICondition
 import com.sampleproject.utils.errors.observers.IObserveValidate
 import com.sampleproject.utils.errors.operators.IOperator
 import com.sampleproject.utils.errors.operators.Operator
-import com.sampleproject.utils.errors.validators.IValidator
 
 /**
  * Validator проверяет source по набору правил (conditions).
