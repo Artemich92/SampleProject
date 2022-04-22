@@ -46,6 +46,10 @@ fun Context.getColorFromAttr(
     return typedValue.data
 }
 
+fun Int.getDimen(context: Context) = context.resources?.getDimensionPixelSize(this) ?: 0
+
+fun Int.getColor(context: Context) = ContextCompat.getColor(context, this)
+
 @ColorInt
 fun Resources.color(@ColorRes colorId: Int) = ResourcesCompat.getColor(this, colorId, null)
 

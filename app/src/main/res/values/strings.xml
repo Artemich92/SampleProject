@@ -18,4 +18,23 @@
     <string name="title_home">Главная</string>
     <string name="title_search">Поиск</string>
     <string name="title_profile">Профиль</string>
+
+    <!-- Errors -->
+    <string name="error_internal_error">Что-то пошло не так, попробуйте позже...</string>
+    <string name="error_external_error">Ошибка сервера, попробуйте позже...</string>
+    <string name="error_internal_connectivity_error">Нет подключения к интернету, проверьте пожалуйста соединение и повторите попытку</string>
+    <string name="error_format_email">Неверный формат e-mail</string>
+    <string name="error_login_or_pass">Неверный логин или пароль</string>
+    <string name="error_not_fill_required_fields">Обязательные поля не заполнены</string>
+    <string name="error_user_already_registered">Пользователь уже зарегистрирован</string>
+    <string name="error_min_length_sms_code">Код слишком короткий</string>
+    <string name="error_phone_number">Некорректный номер телефона</string>
+    <string name="error_repeated_pass">Пароли не совпадают</string>
+    <string name="error_password_not_equals">Пароли не совпадают</string>
+    <string name="error_password_incorrect">Неверный пароль</string>
+    <string name="error_unregistered_phone">Номер телефона не зарегистрирован</string>
+    <string name="error_unregistered_email">Email не зарегистрирован</string>
+    <string name="error_sms_code">Неверный код подтверждения</string>
+    <string name="error_pass_min_length">Пароль должен содержать не менее 8 символов</string>
+    <string name="error_all_attempts_used">На сегодня число попыток исчерпано</string>
 </resources>

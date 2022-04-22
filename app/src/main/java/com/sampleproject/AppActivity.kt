@@ -43,10 +43,9 @@ class AppActivity : AppCompatActivity() {
         setContentView(binding.root)
         activateSecurityMod()
         observeConnectionStatus()
-        setBottomNavigationVisibility(false, findNavController(R.id.navHostFragment))
+        setBottomNavigationVisibility(true, findNavController(R.id.navHostFragment))
         internetConnection.checkInternetWhenOpenApp()
-        binding.addProcedureFab.doOnClick {
-        }
+        binding.addProcedureFab.doOnClick { }
     }
 
     private fun observeConnectionStatus() {
