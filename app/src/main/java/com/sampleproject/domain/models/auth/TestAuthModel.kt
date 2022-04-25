@@ -1,4 +1,4 @@
-package com.sampleproject.domain.models
+package com.sampleproject.domain.models.auth
 
 import android.os.Parcelable
 import kotlinx.parcelize.Parcelize

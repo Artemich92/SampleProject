@@ -7,7 +7,6 @@ import com.sampleproject.domain.repository.interfaces.IPreferencesRepository
 
 private const val PREFS = "sample_project_prefs"
 private const val AUTH_DATA_KEY = "auth_data"
-private const val INTEGRATED_CALENDAR_KEY = "is_integrated_calendar"
 
 class PreferencesRepository(context: Context) : IPreferencesRepository {
 
@@ -22,8 +21,4 @@ class PreferencesRepository(context: Context) : IPreferencesRepository {
     override var token: String?
         get() = settings.getString(AUTH_DATA_KEY, null)
         set(value) = settings.edit().putString(AUTH_DATA_KEY, value).apply()
-
-    override var isIntegratedCalendar: Boolean
-        get() = settings.getBoolean(INTEGRATED_CALENDAR_KEY, false)
-        set(value) = settings.edit().putBoolean(INTEGRATED_CALENDAR_KEY, value).apply()
 }

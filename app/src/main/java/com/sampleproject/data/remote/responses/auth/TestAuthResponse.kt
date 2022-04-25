@@ -1,11 +1,11 @@
 package com.sampleproject.data.remote.responses.auth
 
 import com.google.gson.annotations.SerializedName
-import com.sampleproject.domain.models.AuthModel
-import com.sampleproject.domain.models.RegistrationState
-import com.sampleproject.domain.models.RegistrationState.CONFIRMED
-import com.sampleproject.domain.models.RegistrationState.NOT_CONFIRMED
-import com.sampleproject.domain.models.RegistrationState.REGISTRED
+import com.sampleproject.domain.models.auth.AuthModel
+import com.sampleproject.domain.models.auth.RegistrationState
+import com.sampleproject.domain.models.auth.RegistrationState.CONFIRMED
+import com.sampleproject.domain.models.auth.RegistrationState.NOT_CONFIRMED
+import com.sampleproject.domain.models.auth.RegistrationState.REGISTRED
 
 /**
  *  Состояния поля: registrationState

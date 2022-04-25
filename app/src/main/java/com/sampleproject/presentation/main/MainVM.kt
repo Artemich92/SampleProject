@@ -1,55 +1,47 @@
 package com.sampleproject.presentation.main
 
-import androidx.constraintlayout.widget.ConstraintLayout
-import androidx.core.content.ContextCompat
-import androidx.databinding.BindingAdapter
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
-import com.sampleproject.R
 import com.sampleproject.domain.use_case.auth.LogInUseCase
+import com.sampleproject.presentation.main.MainContract.Action
+import com.sampleproject.presentation.main.MainContract.Action.OnLogIn
+import com.sampleproject.presentation.main.MainContract.Action.OnUiDestroy
+import com.sampleproject.presentation.main.MainContract.Action.OnUiReady
+import com.sampleproject.presentation.main.MainContract.Effect
+import com.sampleproject.presentation.main.MainContract.Effect.LogIn
+import com.sampleproject.presentation.main.MainContract.State
 import com.sampleproject.utils.api.core.onFailure
 import com.sampleproject.utils.api.core.onSuccess
-import com.sampleproject.utils.base.BaseViewModel
+import com.sampleproject.utils.base.mvi.BaseViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 import kotlinx.coroutines.launch
 
-private const val TRUE_PASSWORD = "12345678"
-private const val FALSE_PASSWORD = "123"
-private const val PHONE_NUMBER = +71212121212
-
 @HiltViewModel
 class MainVM @Inject constructor(
     private val logInUseCase: LogInUseCase
-) : BaseViewModel() {
+) : BaseViewModel<Action, State, Effect>() {
 
-    val isTrueResponse = MutableLiveData<Boolean?>(null)
+    override fun createInitialState() = State()
 
-    fun trueRequestClick() {
-        loginRequest(PHONE_NUMBER, TRUE_PASSWORD)
-    }
-
-    fun falseRequestClick() {
-        loginRequest(PHONE_NUMBER, FALSE_PASSWORD)
+    override fun handleEvent(event: Action) {
+        when (event) {
+            is OnUiReady -> Unit
+            is OnLogIn -> loginRequest(event.phone, event.password)
+            is OnUiDestroy -> clearAllWorks()
+        }
     }
 
     private fun loginRequest(phone: Long, password: String) {
         viewModelScope.launch {
+            setState(currentState.copy(isLoading = true))
             logInUseCase(LogInUseCase.Params(phone, password))
                 .onSuccess {
-                    isTrueResponse.value = true
+                    setState(currentState.copy(data = true, isLoading = false))
+                    setEffect { LogIn(true) }
                 }.onFailure {
-                    isTrueResponse.value = false
+                    setState(currentState.copy(data = false, isLoading = false))
+                    setEffect { LogIn(false) }
                 }
         }
-    }
-}
-
-@BindingAdapter("app:setBackground")
-fun setBackground(view: ConstraintLayout, isTrueResponse: Boolean?) {
-    when (isTrueResponse) {
-        true -> view.background = ContextCompat.getDrawable(view.context, R.color.green)
-        false -> view.background = ContextCompat.getDrawable(view.context, R.color.red)
-        null -> view.background = ContextCompat.getDrawable(view.context, R.color.white)
     }
 }

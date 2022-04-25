@@ -4,7 +4,7 @@ import com.sampleproject.domain.repository.interfaces.IPreferencesRepository
 import okhttp3.Interceptor
 import okhttp3.Response
 
-class AuthTokenInterceptor(private val preferences: IPreferencesRepository) : Interceptor {
+class TestAuthTokenInterceptor(private val preferences: IPreferencesRepository) : Interceptor {
 
     override fun intercept(chain: Interceptor.Chain): Response {
         //TODO Обработка скисшего токена

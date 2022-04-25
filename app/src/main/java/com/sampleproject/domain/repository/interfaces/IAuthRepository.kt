@@ -1,6 +1,6 @@
 package com.sampleproject.domain.repository.interfaces
 
-import com.sampleproject.domain.models.AuthModel
+import com.sampleproject.domain.models.auth.AuthModel
 import com.sampleproject.utils.api.core.Answer
 
 interface IAuthRepository {

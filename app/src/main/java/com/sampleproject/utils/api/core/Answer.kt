@@ -1,5 +1,6 @@
 package com.sampleproject.utils.api.core
 
+import com.sampleproject.utils.api.UnknownException
 import com.sampleproject.utils.api.core.Answer.Companion
 import com.sampleproject.utils.api.core.Answer.Failure
 
@@ -50,7 +51,7 @@ class Answer<out T>(val value: Any?) {
 private fun createFailure(exception: Throwable, code: ErrorCode, message: String): Any =
     Failure(exception, code, message)
 
-private fun createFailure(code: ErrorCode, message: String): Any = Failure(NoException(), code, message)
+private fun createFailure(code: ErrorCode, message: String): Any = Failure(UnknownException, code, message)
 
 @Suppress("unchecked_cast")
 inline fun <R, T> Answer<T>.fold(

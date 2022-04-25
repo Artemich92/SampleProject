@@ -1,33 +1,36 @@
 package com.sampleproject.utils.api
 
-import com.sampleproject.data.remote.services.ServerErrorResponse
 import com.sampleproject.utils.api.core.Answer
 import com.sampleproject.utils.api.core.ErrorCode
-import com.sampleproject.utils.api.core.NoException
+import com.sampleproject.utils.api.core.ErrorCode.AllAttemptsUsedError
+import com.sampleproject.utils.api.core.ErrorCode.AuthorizationError
+import com.sampleproject.utils.api.core.ErrorCode.CPContainsMedicalConsultation
+import com.sampleproject.utils.api.core.ErrorCode.EmptyResponseError
+import com.sampleproject.utils.api.core.ErrorCode.ExternalError
+import com.sampleproject.utils.api.core.ErrorCode.InternalError
+import com.sampleproject.utils.api.core.ErrorCode.RecordNotFoundError
+import com.sampleproject.utils.api.core.ServerErrorResponse
 import com.sampleproject.utils.helpers.fromJson
 import okhttp3.ResponseBody
 import retrofit2.Response
 
-const val TIME_NOT_PASSED_ERROR_CODE = 425
-
 abstract class BaseService {
 
     protected suspend fun <T : Any> apiCall(call: suspend () -> Response<T>): Answer<T> {
-        val response: Response<T>
-        try {
-            response = call.invoke()
+        val response: Response<T> = try {
+            call.invoke()
         } catch (e: Exception) {
-            return Answer.failure(ex = e, code = ErrorCode.InternalError)
+            return Answer.failure(ex = e, code = InternalError)
         }
 
-        return if (!response.isSuccessful) {
-            Answer.failure(parseError(response.code(), response.errorBody()))
-        } else {
+        return if (response.isSuccessful) {
             if (response.body() == null) {
-                Answer.failure(ErrorCode.EmptyResponseError)
+                Answer.failure(EmptyResponseError)
             } else {
                 Answer.success(response.body()!!)
             }
+        } else {
+            Answer.failure(parseError(response.code(), response.errorBody()))
         }
     }
 
@@ -37,51 +40,32 @@ abstract class BaseService {
     ): Answer.Failure {
         val response = body?.string().fromJson<ServerErrorResponse>()
 
-        if (response != null) {
+        return if (response != null) {
             val message = response.error?.message ?: "No message"
-            return when (code) {
-                401 -> Answer.Failure(
-                    NoException(),
-                    code = ErrorCode.AuthorizationError,
-                    message = response.error?.detail ?: message
-                )
-                404 -> Answer.Failure(
-                    NoException(),
-                    code = ErrorCode.RecordNotFoundError,
-                    message = message
-                )
-                403 -> Answer.Failure(
-                    NoException(),
-                    code = ErrorCode.CPContainsMedicalConsultation,
-                    message = message
-                )
-                405 -> Answer.Failure(
-                    NoException(),
-                    code = ErrorCode.AllAttemptsUsedError,
-                    message = message
-                )
-                422 -> Answer.Failure(
-                    NoException(),
-                    code = ErrorCode.ExternalError,
-                    message = message
-                )
-                TIME_NOT_PASSED_ERROR_CODE -> Answer.Failure(
-                    NoException(),
-                    code = ErrorCode.TimeNotPassedError,
-                    message = response.error?.meta?.timeToNextAttempt.toString()
-                )
-                else -> Answer.Failure(
-                    NoException(),
-                    ErrorCode.ExternalError,
-                    message
-                )
-            }
+            Answer.Failure(
+                UnknownException,
+                code.getErrorCode(),
+                message
+            )
+        } else {
+            Answer.Failure(
+                UnknownException,
+                ExternalError,
+                ""
+            )
         }
+    }
 
-        return Answer.Failure(
-            NoException(),
-            ErrorCode.InternalError,
-            ""
-        )
+    private fun Int.getErrorCode(): ErrorCode {
+        return when (this) {
+            401 -> AuthorizationError
+            403 -> CPContainsMedicalConsultation
+            404 -> RecordNotFoundError
+            405 -> AllAttemptsUsedError
+            422 -> ExternalError
+            else -> ExternalError
+        }
     }
 }
+
+object UnknownException : Exception()

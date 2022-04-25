@@ -1,5 +1,6 @@
 package com.sampleproject.utils.api.core
 
+//Для разных проектов набор будет разным
 enum class ErrorCode {
     AuthorizationError,
     RecordNotFoundError,
@@ -7,9 +8,5 @@ enum class ErrorCode {
     InternalError,
     ExternalError,
     EmptyResponseError,
-    TimeNotPassedError,
     CPContainsMedicalConsultation,
-
-    AuthenticationError,
-    ValidationError
 }

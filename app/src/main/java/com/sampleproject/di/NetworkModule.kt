@@ -1,9 +1,9 @@
 package com.sampleproject.di
 
-import com.sampleproject.data.remote.api.IAuthApi
-import com.sampleproject.data.remote.interceptors.AuthTokenInterceptor
-import com.sampleproject.data.remote.services.auth.AuthService
-import com.sampleproject.data.remote.services.auth.IAuthService
+import com.sampleproject.data.remote.api.TestIAuthApi
+import com.sampleproject.data.remote.interceptors.TestAuthTokenInterceptor
+import com.sampleproject.data.remote.services.auth.TestAuthService
+import com.sampleproject.data.remote.services.auth.TestIAuthService
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -26,14 +26,14 @@ object NetworkModule {
 
     @Provides
     @Singleton
-    fun provideClient(authTokenInterceptor: AuthTokenInterceptor, httpLoggingInterceptor: HttpLoggingInterceptor) =
+    fun provideClient(testAuthTokenInterceptor: TestAuthTokenInterceptor, httpLoggingInterceptor: HttpLoggingInterceptor) =
         OkHttpClient.Builder().apply {
             followRedirects(false)
             followSslRedirects(false)
             connectTimeout(TIMEOUT, TimeUnit.SECONDS)
             readTimeout(TIMEOUT, TimeUnit.SECONDS)
             writeTimeout(TIMEOUT, TimeUnit.SECONDS)
-            addInterceptor(authTokenInterceptor)
+            addInterceptor(testAuthTokenInterceptor)
             addInterceptor(httpLoggingInterceptor) //Всегда должен быть последним
         }.build()
 
@@ -46,8 +46,8 @@ object NetworkModule {
         .build()
 
     @Provides
-    fun provideAuthApi(retrofit: Retrofit): IAuthApi = retrofit.create(IAuthApi::class.java)
+    fun provideAuthApi(retrofit: Retrofit): TestIAuthApi = retrofit.create(TestIAuthApi::class.java)
 
     @Provides
-    fun provideAuthService(api: IAuthApi): IAuthService = AuthService(api)
+    fun provideAuthService(apiTest: TestIAuthApi): TestIAuthService = TestAuthService(apiTest)
 }

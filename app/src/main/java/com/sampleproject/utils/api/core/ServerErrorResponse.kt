@@ -1,7 +1,8 @@
-package com.sampleproject.data.remote.services
+package com.sampleproject.utils.api.core
 
 import com.google.gson.annotations.SerializedName
 
+//Уникальный для каждого проекта
 data class ServerErrorResponse(
     @SerializedName("errors") val error: Error?
 ) {

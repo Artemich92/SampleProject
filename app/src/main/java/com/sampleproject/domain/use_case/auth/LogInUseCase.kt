@@ -1,6 +1,6 @@
 package com.sampleproject.domain.use_case.auth
 
-import com.sampleproject.domain.models.AuthModel
+import com.sampleproject.domain.models.auth.AuthModel
 import com.sampleproject.domain.repository.interfaces.IAuthRepository
 import com.sampleproject.domain.use_case.UseCase
 import com.sampleproject.utils.api.core.Answer

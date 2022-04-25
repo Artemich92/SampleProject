@@ -19,11 +19,4 @@ class AppActivityVM @Inject constructor(
     val connectivityLiveData: LiveData<ConnectivityStatus>
         get() = connectivityStatusProvider.connectionStatusLiveData
 
-    fun sendSettingsParameters(
-        isIntegratedCalendar: Boolean
-    ) {
-        viewModelScope.launch {
-            prefs.isIntegratedCalendar = isIntegratedCalendar
-        }
-    }
 }

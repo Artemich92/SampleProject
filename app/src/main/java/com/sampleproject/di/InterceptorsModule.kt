@@ -1,6 +1,6 @@
 package com.sampleproject.di
 
-import com.sampleproject.data.remote.interceptors.AuthTokenInterceptor
+import com.sampleproject.data.remote.interceptors.TestAuthTokenInterceptor
 import com.sampleproject.domain.repository.interfaces.IPreferencesRepository
 import dagger.Module
 import dagger.Provides
@@ -16,7 +16,7 @@ object InterceptorsModule {
     @Provides
     @Singleton
     fun provideAuthTokenInterceptor(preferencesRepository: IPreferencesRepository) =
-        AuthTokenInterceptor(preferencesRepository)
+        TestAuthTokenInterceptor(preferencesRepository)
 
     @Provides
     @Singleton

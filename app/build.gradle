@@ -66,6 +66,9 @@ dependencies {
     implementation 'androidx.viewpager2:viewpager2:1.0.0'
     implementation 'androidx.cardview:cardview:1.0.0'
 
+    //Binding
+    implementation 'com.github.kirich1409:viewbindingpropertydelegate:1.5.3'
+
     //Lifecycle
     implementation 'androidx.lifecycle:lifecycle-runtime-ktx:2.4.1'
     implementation 'androidx.lifecycle:lifecycle-common-java8:2.4.1'
