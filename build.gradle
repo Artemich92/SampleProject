@@ -14,12 +14,6 @@ buildscript {
     }
 }
 
-subprojects {
-    afterEvaluate {
-        owner.apply from: rootProject.file("code_quality/detekt/detekt.gradle")
-    }
-}
-
 task clean(type: Delete) {
     delete rootProject.buildDir
 }

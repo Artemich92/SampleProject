@@ -28,17 +28,30 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:paddingBottom="92dp"
+                app:setBackground="@{vm.isTrueResponse()}"
                 tools:context=".android.presentation.main.MainFragment"
                 tools:ignore="SpUsage, ContentDescription">
 
-                <TextView
+                <Button
+                    android:id="@+id/trueRequestButton"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Main Fragment"
-                    android:textSize="20dp"
+                    android:text="True "
+                    android:onClick="@{() -> vm.trueRequestClick()}"
+                    android:layout_marginStart="40dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <Button
+                    android:id="@+id/falseRequestButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="False"
+                    android:onClick="@{() -> vm.falseRequestClick()}"
+                    android:layout_marginEnd="40dp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -49,5 +62,4 @@
             layout="@layout/toolbar" />
 
     </FrameLayout>
-
 </layout>
